@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 185 245" xmlns="http://www.w3.org/2000/svg">
+  <g transform="matrix(0.300169, 0, 0, 0.300067, 4, 3)">
+    <g transform="translate(0 -252.36)">
+      <path d="M 296.52 252.36 C 132.77 252.349 0.01 385.09 0 548.84 C -0.011 712.61 296.52 1052.36 300.995 1034.868 C 296.52 1052.36 593.01 712.59 593 548.84 C 592.989 385.1 460.26 252.37 296.52 252.36 Z" color="#000000" color-rendering="auto" image-rendering="auto" shape-rendering="auto" solid-color="#000000" style="isolation: auto; mix-blend-mode: normal; stroke-opacity: 0; paint-order: fill; fill: rgb(45, 180, 0);"/>
+    </g>
+  </g>
+  <g transform="matrix(0.4335, 0, 0, 0.433354, 415.688507, 151.330078)">
+    <g fill-rule="evenodd">
+      <path d="M -668.675 -101.107 C -668.675 -59.754 -697.881 -27.236 -742.19 -27.236 C -786.496 -27.236 -813.145 -61.844 -812.327 -103.189 C -811.238 -158.648 -777.237 -180.196 -742.19 -243.936 C -704.962 -182.285 -668.675 -142.461 -668.675 -101.107 Z" stroke-width="7" style="fill: rgb(255, 255, 255);"/>
+    </g>
+  </g>
+</svg>

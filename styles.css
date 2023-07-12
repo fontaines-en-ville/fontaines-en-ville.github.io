@@ -1,0 +1,115 @@
+html, body {
+	font-family: DosisBook, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+header {
+	position: fixed;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 100vw;
+	text-align: center;
+	background-color: white;
+	z-index: 10000;
+}
+header h1 {
+	font-weight: bold;
+	font-size: 48px;
+	margin: 10px;
+}
+header h1 span {
+	font-weight: normal;
+	font-size: 30px;
+}
+header h1 sup {
+	font-weight: normal;
+	font-size: 16px;
+}
+select {
+	position: fixed;
+	top: 100px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: min(300px, 90vw);
+	height: 40px;
+	font-size: 20px;
+	text-align: center;
+	background-color: white;
+	border: 0;
+	border-radius: 20px;
+	appearance: none;
+	z-index: 10000;
+}
+footer {
+	position: fixed;
+	display: none;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: min(400px, 90vw);
+	min-height: 150px;
+	background-color: white;
+	border-radius: 40px 40px 0 0;
+	z-index: 10000;
+}
+button {
+	position: fixed;
+	width: 70px;
+	height: 70px;
+	background-color: white;
+	border: 0;
+	border-radius: 100%;
+	cursor: pointer;
+	z-index: 10000;
+}
+button img {
+	position: relative;
+	filter: grayscale(1);
+	height: 60%;
+	margin-top: 20%;
+	margin-bottom: 20%;
+}
+#map {
+	width: 100vw;
+	height: 100vh;
+}
+#sideimage {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -35%);
+}
+#content {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: fit-content;
+	max-width: 80%;
+	font-size: 18px;
+	margin: 0;
+	padding: 10px;
+}
+#exiticon {
+	position: relative;
+	top: 20px;
+	right: 20px;
+	cursor: pointer;
+}
+@media only screen and (max-width: 400px) {
+	header {
+		visibility: hidden;
+	}
+	select {
+		top: 4vh;
+	}
+}
+@media only screen and (max-height: 500px) {
+	header {
+		visibility: hidden;
+	}
+	select {
+		top: 4vh;
+	}
+}
