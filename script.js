@@ -20,10 +20,20 @@ var cities = {
                   "getLat": (fountain)=>fountain.fields.geo_point_2d[0],
                   "getLon": (fountain)=>fountain.fields.geo_point_2d[1],
                   "isActive": (fountain)=>fountain.fields.dispo=="OUI"},
-         "defaultCity": "Paris"
+	"Toulouse": {"data": "https://data.toulouse-metropole.fr/api/records/1.0/search/?dataset=fontaines-a-boire&rows=2000",
+                     "lat": 43.61,
+                     "lon": 1.44,
+                     "zoom": 12,
+                     "filterContent": (json)=>json.records,
+                     "getTitle": (fountain)=>fountain.fields.localisation,
+                     "getLat": (fountain)=>fountain.fields.geo_point_2d[0],
+                     "getLon": (fountain)=>fountain.fields.geo_point_2d[1],
+                     "isActive": (fountain)=>fountain.fields.etat=="en service"}
 };
 
 window.addEventListener("load", (event) => {
+	var getParams = new RegExp("metropole=([^&#=]*)").exec(window.location.search);
+	cities["defaultCity"] = (getParams==null || !Object.keys(cities).includes(getParams[1])) ? "Paris" : getParams[1];
 	currentCity = cities["defaultCity"];
 	fetch(cities[currentCity]["data"]).then((response) => response.json()).then((json) => showPoints(json));
 	map = L.map('map', {zoomControl: false}).setView([cities[currentCity]["lat"], cities[currentCity]["lon"]], cities[currentCity]["zoom"]);
@@ -109,4 +119,12 @@ function showInfo(fountain, isClosest, isCurrent) {
 	document.getElementById("infoprompt").style.display = "flex";
 	document.getElementById("sidecolor").style["background-color"] = isClosest ? "#2db400" : isCurrent ? "red" : cities[currentCity]["isActive"](fountain) ? "#0066ff" : "#ff9100";
 	document.getElementById("sideimage").src = isClosest ? "icons/closestfountain.svg" : isCurrent ? "icons/currentposition.svg" : cities[currentCity]["isActive"](fountain) ? "icons/activefountain.svg" : "icons/inactivefountain.svg";
+}
+
+function changeCity(cityName) {
+	for (const layer of Object.values(map._layers))  if ('_icon' in layer) map.removeLayer(layer);
+	currentCity = cityName;
+	fetch(cities[currentCity]["data"]).then((response) => response.json()).then((json) => showPoints(json));
+	document.getElementById('infoprompt').style.display = 'none';
+	map.setView(new L.LatLng(cities[currentCity]["lat"], cities[currentCity]["lon"]), cities[currentCity]["zoom"]);
 }
