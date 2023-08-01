@@ -11,6 +11,15 @@ var icons = {
 };
 		
 var cities = {
+	"Marseille": {"data": "https://data.ampmetropole.fr/api/records/1.0/search/?dataset=fontaines-a-boire-voirie-ct1&rows=2000",
+                      "lat": 43.30,
+                      "lon": 5.38,
+                      "zoom": 12,
+                      "filterContent": (json)=>json.records,
+                      "getTitle": (fountain)=>fountain.fields.adresse,
+                      "getLat": (fountain)=>fountain.fields.geo_point_2d[0],
+                      "getLon": (fountain)=>fountain.fields.geo_point_2d[1],
+                      "isActive": (fountain)=>fountain.fields.en_service=="EN SERVICE"},
 	"Paris": {"data": "https://parisdata.opendatasoft.com/api/records/1.0/search/?dataset=fontaines-a-boire&rows=2000",
                   "lat": 48.87,
                   "lon": 2.35,
@@ -33,6 +42,7 @@ var cities = {
 
 window.addEventListener("load", (event) => {
 	var getParams = new RegExp("metropole=([^&#=]*)").exec(window.location.search);
+	if (getParams != null) getParams[1] = getParams[1].charAt(0).toUpperCase() + getParams[1].slice(1).toLowerCase();
 	cities["defaultCity"] = (getParams==null || !Object.keys(cities).includes(getParams[1])) ? "Paris" : getParams[1];
 	currentCity = cities["defaultCity"];
 	fetch(cities[currentCity]["data"]).then((response) => response.json()).then((json) => showPoints(json));
