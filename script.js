@@ -11,12 +11,21 @@ var icons = {
 };
 		
 var cities = {
+	"Lyon": {"data": "https://download.data.grandlyon.com/ws/grandlyon/eau.bornefontaine/all.json",
+                      "lat": 45.76,
+                      "lon": 4.84,
+                      "zoom": 11,
+                      "filterContent": (json)=>json.values,
+                      "getTitle": (fountain)=>"Borne "+fountain.identifiantbornefontaine+" du groupe \""+fountain.gestionnairedonnee+"\"",
+                      "getLat": (fountain)=>fountain.lat,
+                      "getLon": (fountain)=>fountain.lon,
+                      "isActive": (fountain)=>true},
 	"Marseille": {"data": "https://data.ampmetropole.fr/api/records/1.0/search/?dataset=fontaines-a-boire-voirie-ct1&rows=2000",
                       "lat": 43.30,
                       "lon": 5.38,
                       "zoom": 12,
                       "filterContent": (json)=>json.records,
-                      "getTitle": (fountain)=>fountain.fields.adresse,
+                      "getTitle": (fountain)=>fountain.fields.nom,
                       "getLat": (fountain)=>fountain.fields.geo_point_2d[0],
                       "getLon": (fountain)=>fountain.fields.geo_point_2d[1],
                       "isActive": (fountain)=>fountain.fields.en_service=="EN SERVICE"},
