@@ -12,14 +12,15 @@ var icons = {
 		
 var cities = {
 	"Lyon": {"data": "https://download.data.grandlyon.com/ws/grandlyon/eau.bornefontaine/all.json",
-                      "lat": 45.76,
-                      "lon": 4.84,
-                      "zoom": 11,
-                      "filterContent": (json)=>json.values,
-                      "getTitle": (fountain)=>"Borne "+fountain.identifiantbornefontaine+" du groupe \""+fountain.gestionnairedonnee+"\"",
-                      "getLat": (fountain)=>fountain.lat,
-                      "getLon": (fountain)=>fountain.lon,
-                      "isActive": (fountain)=>true},
+                 "lat": 45.76,
+                 "lon": 4.84,
+                 "zoom": 11,
+                 "filterContent": (json)=>json.values,
+                 "getTitle": (fountain)=>fountain.commune,
+                 "getLat": (fountain)=>fountain.lat,
+                 "getLon": (fountain)=>fountain.lon,
+                 "isActive": (fountain)=>true,
+                 "isTrustworthy": false},
 	"Marseille": {"data": "https://data.ampmetropole.fr/api/records/1.0/search/?dataset=fontaines-a-boire-voirie-ct1&rows=2000",
                       "lat": 43.30,
                       "lon": 5.38,
@@ -28,7 +29,8 @@ var cities = {
                       "getTitle": (fountain)=>fountain.fields.nom,
                       "getLat": (fountain)=>fountain.fields.geo_point_2d[0],
                       "getLon": (fountain)=>fountain.fields.geo_point_2d[1],
-                      "isActive": (fountain)=>fountain.fields.en_service=="EN SERVICE"},
+                      "isActive": (fountain)=>fountain.fields.en_service=="EN SERVICE",
+                      "isTrustworthy": true},
 	"Paris": {"data": "https://parisdata.opendatasoft.com/api/records/1.0/search/?dataset=fontaines-a-boire&rows=2000",
                   "lat": 48.87,
                   "lon": 2.35,
@@ -37,7 +39,8 @@ var cities = {
                   "getTitle": (fountain)=>fountain.fields.voie,
                   "getLat": (fountain)=>fountain.fields.geo_point_2d[0],
                   "getLon": (fountain)=>fountain.fields.geo_point_2d[1],
-                  "isActive": (fountain)=>fountain.fields.dispo=="OUI"},
+                  "isActive": (fountain)=>fountain.fields.dispo=="OUI",
+                  "isTrustworthy": true},
 	"Toulouse": {"data": "https://data.toulouse-metropole.fr/api/records/1.0/search/?dataset=fontaines-a-boire&rows=2000",
                      "lat": 43.61,
                      "lon": 1.44,
@@ -46,7 +49,8 @@ var cities = {
                      "getTitle": (fountain)=>fountain.fields.localisation,
                      "getLat": (fountain)=>fountain.fields.geo_point_2d[0],
                      "getLon": (fountain)=>fountain.fields.geo_point_2d[1],
-                     "isActive": (fountain)=>fountain.fields.etat=="en service"}
+                     "isActive": (fountain)=>fountain.fields.etat=="en service",
+                     "isTrustworthy": true}
 };
 
 window.addEventListener("load", (event) => {
@@ -58,7 +62,7 @@ window.addEventListener("load", (event) => {
 	map = L.map('map', {zoomControl: false}).setView([cities[currentCity]["lat"], cities[currentCity]["lon"]], cities[currentCity]["zoom"]);
 	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
 		    {attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-		                + ' | Programme sous licence <a href="https://creativecommons.org/publicdomain/zero/1.0/legalcode.fr">CC0</a>'}).addTo(map);
+		                + ' | Programme sous licence <a href="https://creativecommons.org/publicdomain/zero/1.0/legalcode.fr">CC0</a> | Données provenant des collectivités'}).addTo(map);
 	for (const key of Object.keys(cities))
 		if (key != "defaultCity")
 			document.getElementById("cityselector").innerHTML += "<option value='"+key+"' "+(key==cities["defaultCity"] ? "selected" : "")+">"+key+"</option>";
@@ -134,6 +138,7 @@ function showInfo(fountain, isClosest, isCurrent) {
 	        else if (cities[currentCity]["isActive"](fountain)) content.innerHTML += "Cette fontaine est utilisable";
 	        else content.innerHTML += "Cette fontaine est hors-service...";
 		content.innerHTML += "<br>Coordonnées : ("+Number(cities[currentCity]["getLat"](fountain)).toFixed(4)+", "+Number(cities[currentCity]["getLon"](fountain)).toFixed(4)+")";
+		if (!cities[currentCity]["isTrustworthy"]) content.innerHTML += "<br>&#9888; Donnees peu fiables";
 	}
 	document.getElementById("infoprompt").style.display = "flex";
 	document.getElementById("sidecolor").style["background-color"] = isClosest ? "#2db400" : isCurrent ? "red" : cities[currentCity]["isActive"](fountain) ? "#0066ff" : "#ff9100";
