@@ -11,7 +11,7 @@ var icons = {
 };
 		
 var cities = {
-	"Lyon": {"data": "https://download.data.grandlyon.com/ws/grandlyon/eau.bornefontaine/all.json",
+	"Lyon": {"data": "https://download.data.grandlyon.com/ws/grandlyon/adr_voie_lieu.adrbornefontaine_latest/all.json",
                  "lat": 45.76,
                  "lon": 4.84,
                  "zoom": 11,
@@ -138,7 +138,7 @@ function showInfo(fountain, isClosest, isCurrent) {
 	        else if (cities[currentCity]["isActive"](fountain)) content.innerHTML += "Cette fontaine est utilisable";
 	        else content.innerHTML += "Cette fontaine est hors-service...";
 		content.innerHTML += "<br>Coordonnées : ("+Number(cities[currentCity]["getLat"](fountain)).toFixed(4)+", "+Number(cities[currentCity]["getLon"](fountain)).toFixed(4)+")";
-		if (!cities[currentCity]["isTrustworthy"]) content.innerHTML += "<br>&#9888; Donnees peu fiables";
+		if (!cities[currentCity]["isTrustworthy"]) content.innerHTML += "<br>&#9888; Données peu fiables";
 	}
 	document.getElementById("infoprompt").style.display = "flex";
 	document.getElementById("sidecolor").style["background-color"] = isClosest ? "#2db400" : isCurrent ? "red" : cities[currentCity]["isActive"](fountain) ? "#0066ff" : "#ff9100";
