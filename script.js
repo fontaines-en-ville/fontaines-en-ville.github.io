@@ -41,6 +41,16 @@ var cities = {
                   "getLon": (fountain)=>fountain.fields.geo_point_2d[1],
                   "isActive": (fountain)=>fountain.fields.dispo=="OUI",
                   "isTrustworthy": true},
+	"Strasbourg": {"data": "https://data.strasbourg.eu/api/explore/v2.1/catalog/datasets/points_eau_2/records?limit=-1",
+                       "lat": 48.57,
+                       "lon": 7.74,
+                       "zoom": 12,
+                       "filterContent": (json)=>json.results.filter(fountain=>fountain.eau_a_boire=="oui"),
+                       "getTitle": (fountain)=>fountain.precision_lieu,
+                       "getLat": (fountain)=>fountain.geo_point_2d.lat,
+                       "getLon": (fountain)=>fountain.geo_point_2d.lon,
+                       "isActive": (fountain)=>fountain.etat=="activée",
+                       "isTrustworthy": true},
 	"Toulouse": {"data": "https://data.toulouse-metropole.fr/api/records/1.0/search/?dataset=fontaines-a-boire&rows=2000",
                      "lat": 43.61,
                      "lon": 1.44,
@@ -49,8 +59,8 @@ var cities = {
                      "getTitle": (fountain)=>fountain.fields.localisation,
                      "getLat": (fountain)=>fountain.fields.geo_point_2d[0],
                      "getLon": (fountain)=>fountain.fields.geo_point_2d[1],
-                     "isActive": (fountain)=>fountain.fields.etat=="en service",
-                     "isTrustworthy": true}
+                     "isActive": (fountain)=>true,
+                     "isTrustworthy": false}
 };
 
 window.addEventListener("load", (event) => {
