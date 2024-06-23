@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap");
 html, body {
 	font-family: Dosis, sans-serif;
 	font-weight: 400;
@@ -99,15 +99,7 @@ button img {
 	right: 20px;
 	cursor: pointer;
 }
-@media only screen and (max-width: 400px) {
-	header {
-		visibility: hidden;
-	}
-	select {
-		top: 4vh;
-	}
-}
-@media only screen and (max-height: 500px) {
+@media only screen and (max-width: 400px), only screen and (max-height: 500px) {
 	header {
 		visibility: hidden;
 	}

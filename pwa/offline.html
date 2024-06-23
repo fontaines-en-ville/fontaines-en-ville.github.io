@@ -1,0 +1,54 @@
+<!doctype HTML>
+<html lang="fr">
+	<head>
+		<title>Hors-ligne - Fontaines en Ville</title>
+		<meta charset="utf-8">
+		<style>
+		@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap");
+		html, body, button {
+			font-family: Dosis, sans-serif;
+			background-color: #eee;
+		}
+		main {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translateX(-50%) translateY(-50%);
+			width: min(450px, calc(95% - 80px));
+			background-color: white;
+			border-radius: 20px;
+			padding: 40px;
+		}
+		h1 {
+			text-align: center;
+		}
+		img {
+			display: block;
+			margin: auto;
+		}
+		button {
+			width: 100%;
+			font-weight: bold;
+			font-size: 1.25em;
+			color: white;
+			background-color: #0066ff;
+			border: 0;
+			border-radius: 20px;
+			padding: 10px;
+			cursor: pointer;
+		}
+		@media only screen and (max-height: 350px) {
+			img {
+				display: none;
+			}
+		}
+		</style>
+	</head>
+	<body>
+		<main>
+			<img src="../icons/offline.svg" width="150"/>
+			<h1>Vous êtes actuellement hors-ligne</h1>
+			<button onclick="location.reload();">Rafraîchir</button>
+		</main>
+	</body>
+</html>

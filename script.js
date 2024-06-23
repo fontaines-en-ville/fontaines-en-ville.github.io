@@ -4,10 +4,10 @@ var closestMarker;
 var currentCity;
 
 var icons = {
-	"activeIcon": L.icon({iconUrl: 'icons/activefountain.svg', iconSize: [27, 37]}),
-	"inactiveIcon": L.icon({iconUrl: 'icons/inactivefountain.svg', iconSize: [27, 37]}),
-	"closestIcon": L.icon({iconUrl: 'icons/closestfountain.svg', iconSize: [27, 37]}),
-	"positionIcon": L.icon({iconUrl: 'icons/currentposition.svg', iconSize: [27, 37]})
+	"activeIcon": L.icon({iconUrl: "icons/activefountain.svg", iconSize: [27, 37]}),
+	"inactiveIcon": L.icon({iconUrl: "icons/inactivefountain.svg", iconSize: [27, 37]}),
+	"closestIcon": L.icon({iconUrl: "icons/closestfountain.svg", iconSize: [27, 37]}),
+	"positionIcon": L.icon({iconUrl: "icons/currentposition.svg", iconSize: [27, 37]})
 };
 		
 var cities = {
@@ -64,15 +64,18 @@ var cities = {
 };
 
 window.addEventListener("load", (event) => {
+	if ("serviceWorker" in navigator)
+		navigator.serviceWorker.register("service-worker.js");
 	var getParams = new RegExp("metropole=([^&#=]*)").exec(window.location.search);
 	if (getParams != null) getParams[1] = getParams[1].charAt(0).toUpperCase() + getParams[1].slice(1).toLowerCase();
 	cities["defaultCity"] = (getParams==null || !Object.keys(cities).includes(getParams[1])) ? "Paris" : getParams[1];
 	currentCity = cities["defaultCity"];
 	fetch(cities[currentCity]["data"]).then((response) => response.json()).then((json) => showPoints(json));
-	map = L.map('map', {zoomControl: false}).setView([cities[currentCity]["lat"], cities[currentCity]["lon"]], cities[currentCity]["zoom"]);
-	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-		    {attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-		                + ' | Programme sous licence <a href="https://creativecommons.org/publicdomain/zero/1.0/legalcode.fr">CC0</a> | Données provenant des collectivités'}).addTo(map);
+	map = L.map("map", {zoomControl: false}).setView([cities[currentCity]["lat"], cities[currentCity]["lon"]], cities[currentCity]["zoom"]);
+	L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+		    {attribution: "&copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>"
+		                + " | Programme sous licence <a href='https://creativecommons.org/publicdomain/zero/1.0/legalcode.fr'>CC0</a>"
+		                + " | Données provenant des collectivités"}).addTo(map);
 	for (const key of Object.keys(cities))
 		if (key != "defaultCity")
 			document.getElementById("cityselector").innerHTML += "<option value='"+key+"' "+(key==cities["defaultCity"] ? "selected" : "")+">"+key+"</option>";
@@ -84,7 +87,7 @@ function showPoints(json) {
 		L.marker([cities[currentCity]["getLat"](fountain), cities[currentCity]["getLon"](fountain)],
 		         {icon: cities[currentCity]["isActive"](fountain) ? icons.activeIcon : icons.inactiveIcon})
 		         .addTo(map)
-		         .on('click', ()=>showInfo(fountain, false, false));
+		         .on("click", ()=>showInfo(fountain, false, false));
 	}
 }
 
@@ -115,12 +118,12 @@ function addUserPosition(position) {
 	positionMarker = L.marker([position.coords.latitude, position.coords.longitude],
 		 {icon: icons.positionIcon})
 		 .addTo(map)
-		 .on('click', ()=>showInfo({"lat":position.coords.latitude,"lon":position.coords.longitude}, false, true));
+		 .on("click", ()=>showInfo({"lat":position.coords.latitude,"lon":position.coords.longitude}, false, true));
 	const closestFountain = findClosestFountain(position.coords.latitude, position.coords.longitude);
 	closestMarker = L.marker([cities[currentCity]["getLat"](closestFountain), cities[currentCity]["getLon"](closestFountain)],
 	         {icon: icons.closestIcon})
 	         .addTo(map)
-	         .on('click', ()=>showInfo(closestFountain, true, false))
+	         .on("click", ()=>showInfo(closestFountain, true, false))
 	         .setZIndexOffset(5000);
 	map.fitBounds(new L.featureGroup([positionMarker, closestMarker]).getBounds()).zoomOut();
 	showInfo(closestFountain, true, false);
@@ -156,9 +159,9 @@ function showInfo(fountain, isClosest, isCurrent) {
 }
 
 function changeCity(cityName) {
-	for (const layer of Object.values(map._layers))  if ('_icon' in layer) map.removeLayer(layer);
+	for (const layer of Object.values(map._layers))  if ("_icon" in layer) map.removeLayer(layer);
 	currentCity = cityName;
 	fetch(cities[currentCity]["data"]).then((response) => response.json()).then((json) => showPoints(json));
-	document.getElementById('infoprompt').style.display = 'none';
+	document.getElementById("infoprompt").style.display = "none";
 	map.setView(new L.LatLng(cities[currentCity]["lat"], cities[currentCity]["lon"]), cities[currentCity]["zoom"]);
 }

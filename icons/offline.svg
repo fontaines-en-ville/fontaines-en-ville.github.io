@@ -1,0 +1,13 @@
+<svg viewBox="0 0 80 65" xmlns="http://www.w3.org/2000/svg">
+  <defs></defs>
+  <g transform="matrix(0.570096, 0, 0, 0.570096, 556.217896, 86.296089)">
+    <defs id="defs2"></defs>
+    <g id="g1373" transform="matrix(1, 0, 0, 1, -457.664581, -85.374222)">
+      <path id="path19174" style="fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-miterlimit: 4; stroke-dasharray: none; stroke-opacity: 1; paint-order: fill markers; stroke: rgb(0, 0, 0); stroke-width: 14.0327px;" d="M -492.785 -13.55 C -480.854 -25.515 -464.672 -32.236 -447.799 -32.236 C -430.926 -32.236 -414.744 -25.515 -402.813 -13.55"></path>
+      <path id="path19178" style="fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-miterlimit: 4; stroke-dasharray: none; stroke-opacity: 1; paint-order: fill markers; stroke: rgb(0, 0, 0); stroke-width: 14.0327px;" d="M -509.985 -30.799 C -493.493 -47.339 -471.123 -56.63 -447.799 -56.63 C -424.475 -56.63 -402.105 -47.339 -385.613 -30.799"></path>
+      <path id="path19182" style="fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-miterlimit: 4; stroke-dasharray: none; stroke-opacity: 1; paint-order: fill markers; stroke: rgb(0, 0, 0); stroke-width: 14.0327px;" d="M -475.584 3.699 C -468.215 -3.691 -458.221 -7.842 -447.799 -7.842 C -437.377 -7.842 -427.383 -3.691 -420.014 3.699"></path>
+      <rect x="-57.551" y="-40.683" width="41.675" height="7.938" style="stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 3.50818px;" rx="10" ry="10" transform="matrix(-0.707107, -0.707107, 0.707107, -0.707107, -447.862793, -23.512892)"></rect>
+      <rect x="-40.683" y="-57.551" width="7.938" height="41.675" style="stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 3.50818px;" rx="10" ry="10" transform="matrix(-0.707107, -0.707107, 0.707107, -0.707107, -447.862793, -23.512892)"></rect>
+    </g>
+  </g>
+</svg>

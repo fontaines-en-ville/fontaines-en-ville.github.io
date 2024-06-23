@@ -1,0 +1,45 @@
+{
+	"name": "Fontaines en Ville",
+	"short_name": "Fontaines en Ville",
+	"description": "Une application de recherche de points d'eau potable.",
+	"start_url": "/",
+	"orientation": "any",
+	"display": "standalone",
+	"theme_color": "#0066ff",
+	"background_color": "#ffffff",
+	"categories": ["travel", "utilities"],
+	"icons": [
+		{
+			"src": "appicons/256x256.png",
+			"sizes": "256x256"
+		},
+		{
+			"src": "appicons/128x128.png",
+			"sizes": "128x128"
+		},
+		{
+			"src": "appicons/96x96.png",
+			"sizes": "96x96"
+		},
+		{
+			"src": "appicons/64x64.png",
+			"sizes": "64x64"
+		},
+		{
+			"src": "appicons/48x48.png",
+			"sizes": "48x48"
+		},
+		{
+			"src": "appicons/32x32.png",
+			"sizes": "32x32"
+		},
+		{
+			"src": "appicons/24x24.png",
+			"sizes": "24x24"
+		},
+		{
+			"src": "appicons/16x16.png",
+			"sizes": "16x16"
+		}
+	]
+}
